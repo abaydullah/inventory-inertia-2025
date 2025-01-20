@@ -1,0 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+
+
+    /* .menu-item:hover a{
+        @apply  text-white
+    } */
+
+    /* sidebar */
+    .menu-item{
+        @apply py-2 px-1 rounded-sm
+        text-menu-active-text font-bold text-lg justify-between
+    }
+    .sub-menu-item{
+        @apply py-2 px-1 rounded-sm
+        text-menu-active-text font-bold text-lg pl-5
+    }
+    .menu-item > ul{
+        @apply bg-menu-bg
+    }
+
+    .menu-item-icon{
+        @apply text-xl text-menu-bar mr-1
+    }
+    sidebar ul  li  a{
+        @apply md:inline inline
+    }
+
+    /* sidebar ul:hover li a{
+      @apply inline
+    }
+    sidebar ul:hover , #topbar {
+      @apply w-64
+    } */
+
+    /* .menu-item a:hover{
+       @apply inline text-orange-600 font-extrabold text-xl
+   } */
+    .menu-item a{
+        @apply text-gray-900 font-semibold
+    }
+
+    .menu-item:hover {
+        @apply  text-xl font-bold shadow-sm bg-emerald-200 rounded-md
+    }
+    .sub-menu-item:hover {
+        @apply  text-xl font-bold shadow-sm bg-emerald-200 rounded-md
+    }
+
+    .backend_active {
+        @apply  text-xl font-bold shadow-sm bg-emerald-200 rounded-md text-gray-200
+    }
+    .active {
+        @apply
+            /* after:content-[''] after:border-[8px]
+            after:inline-block after:border-green-500 after:rounded-l-full after:rounded-r-full
+
+             */
+        text-xl font-bold shadow-sm bg-emerald-200 rounded-md
+    }
+
+    /* navbar */
+
+    #top-menu li {
+        @apply md:relative
+    }
+    /* dropdown menu  */
+    #top-menu ul ul {
+        @apply md:absolute md:top-10 md:left-0 md:bg-menu-bg bg-slate-400 md:w-32 w-full h-auto md:pl-0 pl-5 divide-y-2 divide-gray-50
+    }
+    #top-menu ul li:last-child ul {
+        @apply md:absolute md:top-10 md:right-0 left-auto md:bg-menu-bg bg-slate-400 md:w-32 w-full h-auto divide-y-2 divide-gray-50
+    }
+
+    #top-menu ul ul li:hover{
+        @apply bg-emerald-600 md:block
+    }
+
+    #top-menu ul li:hover ul  {
+        @apply md:block text-gray-700 font-bold
+    }
+
+    .nav-item{
+        @apply hover:bg-orange-600 py-2 px-1 rounded-sm hover:text-yellow-100
+    }
+
+    #table th{
+        @apply bg-slate-200 rounded-md
+    }
+    #table td {
+        @apply bg-slate-50 rounded-sm text-center py-1 px-2
+    }
+    #table .item {
+        @apply text-left pr-2
+    }
+}
+.pagination-page-nav a{
+    @apply lg:text-4xl text-2xl text-white px-2 shadow-lg font-bold
+}
+.active a {
+    @apply lg:text-4xl text-3xl shadow-lg font-extrabold bg-green-500 rounded-md
+}

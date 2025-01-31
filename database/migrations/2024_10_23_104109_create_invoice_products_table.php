@@ -23,8 +23,9 @@ return new class extends Migration {
             $table->unsignedBigInteger('qty');
             $table->double('total_buy_price');
             $table->double('total_sell_price');
-            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('user_id')->index();
             $table->softDeletes();
+            $table->unsignedBigInteger('tenant_id')->index();
             $table->timestamps();
         });
     }

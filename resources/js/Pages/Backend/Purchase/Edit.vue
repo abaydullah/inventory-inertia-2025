@@ -1,7 +1,7 @@
 <script setup>
 import {computed, onBeforeMount, onMounted, onUnmounted, reactive, ref, watch} from "vue";
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import {Head, router, useForm} from '@inertiajs/vue3';
+import {Head, useForm} from '@inertiajs/vue3';
 import {usePurchaseStore} from "@/Store/usePurchaseStore.js";
 import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css'
@@ -156,6 +156,11 @@ const stock = (stock) => {
 const updatePayment = () => {
     form.payment = paymentTotal();
 }
+watch(() => form.group_id, group_id => {
+    productAll();
+
+})
+
 watch(() => [usePurchaseStore().allWithdraws, form.subtotal, form.receive, form.payment, form.discount_type, form.discount, form.discount_amount], (type, discount = 0, amount = 0) => {
 
 
@@ -193,8 +198,17 @@ const paymentTotal = () => {
 
 const productsAll = ref(props.products);
 const productAll = () => {
+
     productsAll.value = props.products.filter((product) => {
-        return !usePurchaseStore().allPurchases.find(purchase => purchase.id === product.id)
+        if (form.group_id) {
+            if (form.group_id === product.group_id) {
+
+                return !usePurchaseStore().allPurchases.find(purchase => purchase.id === product.id)
+            }
+        } else {
+            return !usePurchaseStore().allPurchases.find(purchase => purchase.id === product.id)
+
+        }
     })
 }
 const totalQty = ref(0);
@@ -298,7 +312,7 @@ const groupAllProduct = () => {
                         <div class="mt-2">
                             <label for="barcode" class="text-lg font-semibold px-2">Barcode</label>
                             <div class="relative ">
-                                <ion-icon name="barcode-outline" class="absolute z-40 text-6xl"></ion-icon>
+                                <ion-icon name="barcode-outline" class="absolute z-10 text-6xl"></ion-icon>
                                 <input type="text"
                                        class="pl-16 absolute top-0 left-0 form-input px-4 py-3 rounded-md w-full my-2"
                                        id="barcode" v-model="form.barcode"
@@ -339,6 +353,10 @@ const groupAllProduct = () => {
                         </div>
                         <div class="relative mt-2 w-full">
                             <label for="group_id" class="text-lg font-semibold px-2">Products</label>
+                            <button v-if="form.group_id && productsAll.length > 0" @click="groupAllProduct"
+                                    class="bg-blue-500 text-gray-50 py-1 px-2 rounded-sm font-semibold">Group All
+                                Product Select
+                            </button>
                             <v-select class="mt-2 style-chooser"
                                       @update:modelValue="selectedProduct"
                                       :reduce="product => product" label="name"
@@ -368,6 +386,7 @@ const groupAllProduct = () => {
                             </tr>
                             </thead>
                             <tbody>
+
                             <tr class="border divide-x-2 text-sm"
                                 v-for="(product, key) in usePurchaseStore().allPurchases">
                                 <td style="width: 5%;" class="text-center text-2xl font-semibold">{{ key + 1 }}</td>

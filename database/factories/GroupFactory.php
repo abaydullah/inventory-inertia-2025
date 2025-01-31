@@ -18,11 +18,12 @@ class GroupFactory extends Factory
     public function definition(): array
     {
 
-            $name = fake()->name;
+        $name = fake()->name;
         return [
             'name' => $name,
-            'slug' => Str::slug($name,'-'),
+            'slug' => Str::slug($name, '-'),
             'user_id' => 1,
+            'tenant_id' => 1
         ];
 
     }

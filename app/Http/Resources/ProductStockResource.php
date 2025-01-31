@@ -27,7 +27,8 @@ class ProductStockResource extends JsonResource
             'unit_id' => $this->unit_id,
             'unit' => $this->unit,
             'unit_size' => $this->unit_size,
-            'qty' => $this->stockQty(),
+            'qty' => $this->qty,
+            'stock' => $this->stockQty(),
         ];
     }
 }

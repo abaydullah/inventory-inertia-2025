@@ -28,6 +28,7 @@ class ProductFactory extends Factory
             'user_id' => 1,
             'group_id' => rand(1, 100),
             'status' => true,
+            'tenant_id' => 1
         ];
     }
 }

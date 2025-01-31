@@ -23,6 +23,7 @@ return new class extends Migration {
             $table->unsignedBigInteger('account_id')->nullable()->index();
             $table->unsignedBigInteger('user_id')->index();
             $table->softDeletes();
+            $table->unsignedBigInteger('tenant_id')->index();
             $table->timestamps();
         });
     }

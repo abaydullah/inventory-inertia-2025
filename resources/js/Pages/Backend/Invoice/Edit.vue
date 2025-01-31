@@ -1,7 +1,7 @@
 <script setup>
 import {computed, onMounted, ref, watch} from "vue";
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import {Head, router, useForm} from '@inertiajs/vue3';
+import {Head, useForm} from '@inertiajs/vue3';
 import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css'
 import Header from "@/Layouts/Header.vue";
@@ -66,11 +66,7 @@ let editForm = useForm({
     'account_id': '',
     'date': date,
 });
-const image = ref(null);
 let loading = ref(false);
-const isOpen = ref(false)
-const isOpenUpdateModal = ref(false)
-
 const decrement = (id) => {
     let p = usePurchaseUpdate().allPurchases.find(purchase => purchase.id === id)
     p.qty--;
@@ -139,20 +135,12 @@ const totalPrice = () => {
     form.subtotal = totalPrice
     return totalPrice;
 }
-const imagePreview = computed(() => {
-    if (!image.value) {
-        return;
-    }
-    form.image = image.value
-    return URL.createObjectURL(image.value);
-});
 
 
 const removePurchase = (product) => {
     usePurchaseUpdate().removePurchase(product)
     productAll()
 }
-
 let submit = () => {
     form.post(route('purchases.update', form.id), {
         preserveScroll: true,
@@ -165,13 +153,11 @@ let submit = () => {
     });
 }
 
-
 const selectedProduct = (product) => {
     usePurchaseUpdate().setPurchase(product)
     productAll()
 
 }
-
 
 </script>
 

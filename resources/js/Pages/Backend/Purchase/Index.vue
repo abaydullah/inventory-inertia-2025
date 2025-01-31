@@ -162,6 +162,7 @@ let deletePurchase = () => {
                             </tr>
                             </thead>
                             <tbody>
+
                             <tr class="border divide-x-2 w-full text-sm"
                                 v-for="(purchase, key) in purchases">
                                 <td class="text-center text-2xl font-semibold">{{ key + 1 }}</td>

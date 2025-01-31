@@ -10,6 +10,7 @@ use App\Models\Group;
 use App\Models\Product;
 use App\Models\Size;
 use App\Models\Supplier;
+use App\Models\Tenant;
 use App\Models\Unit;
 use App\Models\User;
 
@@ -25,7 +26,11 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // User::factory(10)->create();
-
+        Tenant::create([
+            'name' => 'Emart9',
+            'sub_domain' => 'emart9',
+            'domain' => 'emart9.test',
+        ]);
         User::create([
             'name' => 'Admin',
             'email' => 'admin@gmail.com',
@@ -44,14 +49,16 @@ class DatabaseSeeder extends Seeder
             'name' => 'Store',
             'email' => 'store@gmail.com',
             'password' => bcrypt('12345678'),
-            'role' => 'store'
+            'role' => 'store',
+            'tenant_id' => 1
         ]);
 
         User::create([
             'name' => 'Staff',
             'email' => 'staff@gmail.com',
             'password' => bcrypt('12345678'),
-            'role' => 'staff'
+            'role' => 'staff',
+            'tenant_id' => 1
         ]);
 
         Category::factory(50)->create();
@@ -63,66 +70,83 @@ class DatabaseSeeder extends Seeder
         //size//
         Size::create([
             'name' => 'S',
+            'tenant_id' => 1
         ]);
         Size::create([
             'name' => 'M',
+            'tenant_id' => 1
         ]);
         Size::create([
             'name' => 'L',
+            'tenant_id' => 1
         ]);
         Size::create([
             'name' => 'XL',
+            'tenant_id' => 1
         ]);
         //color//
         Color::create([
             'name' => 'Black',
+            'tenant_id' => 1
         ]);
         Color::create([
             'name' => 'Brown',
+            'tenant_id' => 1
         ]);
         Color::create([
             'name' => 'Red',
+            'tenant_id' => 1
         ]);
         Color::create([
             'name' => 'Blue',
+            'tenant_id' => 1
         ]);
         Color::create([
             'name' => 'Green',
+            'tenant_id' => 1
         ]);
         Color::create([
             'name' => 'White',
+            'tenant_id' => 1
         ]);
         Color::create([
             'name' => 'Grey',
+            'tenant_id' => 1
         ]);
         Color::create([
             'name' => 'Gold',
+            'tenant_id' => 1
         ]);
         //unit/
         Unit::create([
             'name' => 'Box',
             'short_name' => 'Box',
-            'size' => 12
+            'size' => 12,
+            'tenant_id' => 1
         ]);
         Unit::create([
             'name' => 'piece',
             'short_name' => 'piece',
-            'size' => 1
+            'size' => 1,
+            'tenant_id' => 1
         ]);
         Unit::create([
             'name' => 'Packets',
             'short_name' => 'Packets',
-            'size' => 24
+            'size' => 24,
+            'tenant_id' => 1
         ]);
         Unit::create([
             'name' => 'Grams',
             'short_name' => 'g',
-            'size' => 100
+            'size' => 100,
+            'tenant_id' => 1
         ]);
         Account::create([
             'name' => 'Islami Bank',
             'account_number' => '205013202041457',
-            'user_id' => 100
+            'user_id' => 100,
+            'tenant_id' => 1
         ]);
 
     }

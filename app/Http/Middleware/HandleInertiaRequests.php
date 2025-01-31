@@ -58,6 +58,7 @@ class HandleInertiaRequests extends Middleware
             'groups' => GroupResource::collection(Group::all()),
             'auth' => [
                 'user' => $request->user(),
+                'tenant' => $request->user()?->tenant,
             ],
             'notification' => collect(Arr::only($request->session()->all(), ['success', 'warning', 'error']))->mapWithKeys(function ($notification, $key) {
                 return ['type' => $key, 'body' => $notification];

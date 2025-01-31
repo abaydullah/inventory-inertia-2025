@@ -1,6 +1,10 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import {Head} from '@inertiajs/vue3';
+
+const props = defineProps({
+    users: Array
+})
 </script>
 
 <template>
@@ -13,7 +17,7 @@ import {Head} from '@inertiajs/vue3';
 
         <div class="py-12">
             <div id="content" class="p-5">
-
+                {{ users.length }}
                 <div
                     class="flex justify-between  my-10 mx-3 border-2 px-5 py-3 ring-2 ring-offset-2 rounded-md dark:bg-slate-400 ">
                     <div>

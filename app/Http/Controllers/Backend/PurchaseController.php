@@ -179,28 +179,32 @@ class PurchaseController extends Controller
 
             foreach ($item['stocks'] as $stock) {
                 if (is_int($stock['id'])) {
-
-
-                    $productStock = ProductStock::find($stock['id']);
-                    $productStock->update(
-                        [
-                            'product_id' => $stock['product_id'],
-                            'purchase_product_id' => $purchaseProduct->id,
-                            'buy_price' => $stock['buy_price'],
-                            'sell_price' => $stock['sell_price'],
-                            'color_id' => $stock['color_id'],
-                            'size_id' => $stock['size_id'],
-                            'unit_id' => $stock['unit_id'],
-                            'unit_size' => $stock['unit_size'],
-                            'qty' => $stock['qty'],
-                            'user_id' => auth()->id(),
-                        ]
-                    );
+                    $productStock = ProductStock::findOrFail($stock['id']);
+                    if ($productStock) {
+                        $productStock->update(
+                            [
+                                'product_id' => $stock['product_id'],
+                                'purchase_product_id' => $purchaseProduct->id,
+                                'buy_price' => $stock['buy_price'],
+                                'sell_price' => $stock['sell_price'],
+                                'color_id' => $stock['color_id'],
+                                'size_id' => $stock['size_id'],
+                                'unit_id' => $stock['unit_id'],
+                                'unit_size' => $stock['unit_size'],
+                                'qty' => $stock['qty'],
+                                'user_id' => auth()->id(),
+                            ]
+                        );
+                    }
                     $stockIdsFilter = collect($item['stocks'])->pluck('id');
                     $stockIds = $stockIdsFilter->reject(function ($value, int $key) {
                         return !is_int($value);
                     });
-                    ProductStock::where('purchase_product_id', $purchaseProduct->id)->whereNotIn('id', $stockIds)->deleteForce();
+
+                    $productStocks = ProductStock::where('purchase_product_id', $purchaseProduct->id)->whereNotIn('id', $stockIds);
+                    if ($productStocks->count() > 0) {
+                        $productStocks->deleteForce();
+                    }
                 } else {
 
                     ProductStock::create([

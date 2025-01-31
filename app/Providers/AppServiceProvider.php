@@ -2,15 +2,12 @@
 
 namespace App\Providers;
 
-use App\Models\Mark;
-use App\Models\Subject;
-use App\Models\Test;
-use App\Observers\MarkObserver;
-use App\Observers\SubjectObserver;
-use App\Observers\TestObserver;
+use App\Listeners\TenantIdSession;
+
+use Illuminate\Auth\Events\Login;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
-use PhpParser\JsonDecoder;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -27,6 +24,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Event::listen(
+            Login::class,
+            TenantIdSession::class
+        );
         JsonResource::withoutWrapping();
 
     }

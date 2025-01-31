@@ -15,6 +15,8 @@ return new class extends Migration {
             $table->string('name');
             $table->string('short_name');
             $table->double('size');
+            $table->unsignedInteger('user_id')->index();
+            $table->unsignedBigInteger('tenant_id')->index();
             $table->timestamps();
         });
     }

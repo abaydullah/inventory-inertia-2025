@@ -23,8 +23,9 @@ class SupplierFactory extends Factory
             'photo' => fake()->imageUrl(),
             'mobile' => fake()->phoneNumber(),
             'address' => fake()->address(),
-            'due' => rand(0,500),
+            'due' => rand(0, 500),
             'user_id' => 1,
+            'tenant_id' => 1
         ];
     }
 }

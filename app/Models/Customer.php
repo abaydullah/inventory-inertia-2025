@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Trait\Groupable;
+use App\Trait\TenantTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -10,7 +11,7 @@ use Illuminate\Support\Facades\Storage;
 
 class Customer extends Model
 {
-    use HasFactory, Groupable, SoftDeletes;
+    use HasFactory, Groupable, SoftDeletes, TenantTrait;
 
     protected $fillable = ['name',
         'photo',

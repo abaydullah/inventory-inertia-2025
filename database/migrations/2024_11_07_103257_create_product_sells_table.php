@@ -26,8 +26,9 @@ return new class extends Migration {
             $table->unsignedInteger('unit_id')->nullable();
             $table->unsignedInteger('unit_size')->nullable();
             $table->unsignedInteger('qty')->default(0);
-            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('user_id')->index();
             $table->softDeletes();
+            $table->unsignedBigInteger('tenant_id')->index();
             $table->timestamps();
         });
     }

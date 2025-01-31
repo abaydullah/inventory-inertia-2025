@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -40,8 +39,9 @@ return new class extends Migration
             $table->string('machine_user_id')->nullable();
             $table->dateTime('office_start')->nullable();
             $table->dateTime('office_end')->nullable();
-            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('user_id')->index();
             $table->softDeletes();
+            $table->unsignedBigInteger('tenant_id')->index();
             $table->timestamps();
         });
     }

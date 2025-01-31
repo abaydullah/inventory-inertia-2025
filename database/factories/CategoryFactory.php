@@ -20,8 +20,9 @@ class CategoryFactory extends Factory
         $name = fake()->name;
         return [
             'name' => $name,
-            'slug' => Str::slug($name,'-'),
+            'slug' => Str::slug($name, '-'),
             'user_id' => 1,
+            'tenant_id' => 1
         ];
     }
 }

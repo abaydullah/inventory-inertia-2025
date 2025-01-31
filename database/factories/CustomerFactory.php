@@ -23,10 +23,10 @@ class CustomerFactory extends Factory
             'mobile' => fake()->phoneNumber(),
             'gender' => 'male',
             'address' => fake()->address(),
-            'due' => rand(0,500),
+            'due' => rand(0, 500),
             'status' => true,
             'user_id' => 1,
-
+            'tenant_id' => 1
         ];
     }
 }

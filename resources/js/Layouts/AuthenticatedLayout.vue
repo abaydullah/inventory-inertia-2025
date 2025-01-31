@@ -168,7 +168,7 @@ function dropDown(e) {
                             <ion-icon name="list-outline" class="menu-item-icon"></ion-icon>
                             <Link :href="route('banners.index')"> Banners</Link>
                         </li>
-                        
+
                         <li class="menu-item">
                             <ion-icon name="grid-outline"
                                       class="menu-item-icon"></ion-icon>

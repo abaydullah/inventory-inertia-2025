@@ -24,6 +24,7 @@ return new class extends Migration {
             $table->double('total_sell_price');
             $table->unsignedInteger('user_id')->index();
             $table->softDeletes();
+            $table->unsignedBigInteger('tenant_id')->index();
             $table->timestamps();
         });
     }
